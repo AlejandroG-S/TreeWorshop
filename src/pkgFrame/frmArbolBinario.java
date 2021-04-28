@@ -32,8 +32,12 @@ public class frmArbolBinario extends javax.swing.JFrame {
     private void initComponents() {
 
         btnInsertar = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
+        btnListarPost = new javax.swing.JButton();
         txtNum = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnListarPre = new javax.swing.JButton();
+        btnListarIn = new javax.swing.JButton();
+        btnCalAlt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,10 +48,33 @@ public class frmArbolBinario extends javax.swing.JFrame {
             }
         });
 
-        btnListar.setText("Listar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
+        btnListarPost.setText("Post-orden");
+        btnListarPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
+                btnListarPostActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Listar en:");
+
+        btnListarPre.setText("Pre-orden");
+        btnListarPre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarPreActionPerformed(evt);
+            }
+        });
+
+        btnListarIn.setText("In-orden");
+        btnListarIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarInActionPerformed(evt);
+            }
+        });
+
+        btnCalAlt.setText("Calcular Altura");
+        btnCalAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalAltActionPerformed(evt);
             }
         });
 
@@ -55,17 +82,25 @@ public class frmArbolBinario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnListarPre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnListarIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnListarPost, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(jLabel1)))
+                    .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(btnCalAlt))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(btnInsertar)))
-                .addGap(36, 36, 36))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,9 +109,20 @@ public class frmArbolBinario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsertar)
                     .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addComponent(btnListar)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListarPre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListarIn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnCalAlt)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnListarPost)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -87,10 +133,25 @@ public class frmArbolBinario extends javax.swing.JFrame {
         this.arbol.insertar(new clsNodo(Integer.parseInt(txtNum.getText()), null, null), this.arbol.getRoot());
     }//GEN-LAST:event_btnInsertarActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnListarPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPostActionPerformed
         // TODO add your handling code here:
-        this.arbol.listar(this.arbol.getRoot());
-    }//GEN-LAST:event_btnListarActionPerformed
+        this.arbol.listarPost(this.arbol.getRoot());
+    }//GEN-LAST:event_btnListarPostActionPerformed
+
+    private void btnListarInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarInActionPerformed
+        // TODO add your handling code here:
+        this.arbol.listarIn(this.arbol.getRoot());
+    }//GEN-LAST:event_btnListarInActionPerformed
+
+    private void btnListarPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarPreActionPerformed
+        // TODO add your handling code here:
+        this.arbol.listarPre(this.arbol.getRoot());
+    }//GEN-LAST:event_btnListarPreActionPerformed
+
+    private void btnCalAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalAltActionPerformed
+        // TODO add your handling code here:
+        System.out.println("La altura del arbol es " + arbol.calAltura(arbol.getRoot()));
+    }//GEN-LAST:event_btnCalAltActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,8 +189,12 @@ public class frmArbolBinario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalAlt;
     private javax.swing.JButton btnInsertar;
-    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnListarIn;
+    private javax.swing.JButton btnListarPost;
+    private javax.swing.JButton btnListarPre;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtNum;
     // End of variables declaration//GEN-END:variables
 }

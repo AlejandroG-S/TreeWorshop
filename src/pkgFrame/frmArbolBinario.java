@@ -153,6 +153,7 @@ public class frmArbolBinario extends javax.swing.JFrame {
         System.out.println("La altura del arbol es " + arbol.calAltura(arbol.getRoot()));
     }//GEN-LAST:event_btnCalAltActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

@@ -82,6 +82,7 @@ public class clsArbol {
         }
     }
 
+    
     public int calAltura(clsNodo rootTmp) {
         int altura = 0;
 
@@ -100,7 +101,6 @@ public class clsArbol {
         return altura;
     }
     
-
     /**
      * @return the root
      */
